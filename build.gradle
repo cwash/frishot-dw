@@ -73,9 +73,6 @@ run {
     args 'server', dropWizardConfig
 }
 
-task('stop') << {
-    args 'stop', dropWizardConfig
-}
 
 
 task stage(dependsOn: ['clean', 'fatJar'])

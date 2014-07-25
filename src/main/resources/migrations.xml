@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="1" author="cwash">
+        <createSequence sequenceName="hibernate_sequence" startValue="1" incrementBy="1" cycle="false" />
+        <createTable tableName="people">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="fullName" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="jobTitle" type="varchar(255)"/>
+        </createTable>
+        <createTable tableName="players">
+            <column name="playerPk" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="playerId" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="playerId_unique"/>
+            </column>
+            <column name="handle" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="playerHandle_unique"/>
+            </column>
+            <column name="totalWinnings" type="bigint"/>
+            <column name="maxPotWon" type="bigint"/>
+            <column name="totalHits" type="bigint"/>
+            <column name="totalShots" type="bigint"/>
+            <column name="maxDistanceHit" type="bigint"/>
+            <column name="currentHitStreak" type="bigint"/>
+            <column name="maxHitStreak" type="bigint"/>
+        </createTable>
+        <createIndex tableName="players" indexName="playerId_index">
+            <column name="playerId"></column>
+        </createIndex>
+        <createTable tableName="Player_positionHitTotals">
+            <column name="Player_playerPk" type="bigint"/>
+            <column name="positionHitTotals_KEY" type="bigint"/>
+            <column name="positionHitTotals" type="bigint"/>
+        </createTable>
+        <createTable tableName="games">
+            <column name="gamePk" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="gameId" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="gameId_unique"/>
+            </column>
+            <column name="initialPot" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="totalPot" type="bigint"/>
+            <column name="potSplit" type="bigint"/>
+            <column name="gameOver" type="tinyint"/>
+            <column name="createdBy" type="varchar(255)"/>
+            <column name="playerGroup" type="blob"/>
+            <column name="playerOrder" type="blob"/>
+            <column name="playersHit" type="blob"/>
+        </createTable>
+        <createIndex tableName="games" indexName="gameId_index">
+            <column name="gameId"></column>
+        </createIndex>
+        <createTable tableName="Game_playerGroup">
+            <column name="Game_gamePk" type="bigint"/>
+            <column name="playerGroup" type="varchar(255)"/>
+            <column name="ordinal" type="tinyint"/>
+        </createTable>
+        <createTable tableName="Game_playerOrder">
+            <column name="Game_gamePk" type="bigint"/>
+            <column name="playerOrder" type="varchar(255)"/>
+            <column name="ordinal" type="tinyint"/>
+        </createTable>
+        <createTable tableName="Game_playersHit">
+            <column name="Game_gamePk" type="bigint"/>
+            <column name="playersHit" type="varchar(255)"/>
+            <column name="ordinal" type="tinyint"/>
+        </createTable>
+        <createTable tableName="darts">
+            <column name="dartPk" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="dartId" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="dartId_unique"/>
+            </column>
+            <column name="handle" type="varchar(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="dartHandle_unique"/>
+            </column>
+            <column name="totalHits" type="bigint"/>
+            <column name="totalShots" type="bigint"/>
+        </createTable>
+        <createIndex tableName="darts" indexName="dartId_index">
+            <column name="dartId"></column>
+        </createIndex>
+        <createTable tableName="Dart_positionHitTotals">
+            <column name="Dart_dartPk" type="bigint"/>
+            <column name="positionHitTotals_KEY" type="bigint"/>
+            <column name="positionHitTotals" type="bigint"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

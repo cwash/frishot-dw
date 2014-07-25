@@ -24,7 +24,7 @@ REST + CQRS design, H2 + Dropwizard - Jetty based microservice architecture. Liq
 
 ## Design
 
-The rough design doc I through together when starting on the project can be found under `design/original-design.pdf`
+The rough design doc I threw together when starting on the project can be found under `design/original-design.pdf`
 
 The overall architectural design for the project follows a CQRS style.  All read/query operations take the form of GET 
 operations on resources, and all writes are handled by POST operations with Command payloads.  If needed, the read and 

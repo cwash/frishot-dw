@@ -1,1 +1,1 @@
-{ "gameId": "51815bbb-2e0c-4328-b36c-e5256d83601b", "handle": "greg" }
+{"type":"AddPlayerCommand","gameId":"51815bbb-2e0c-4328-b36c-e5256d83601b", "handle":"chris"}
